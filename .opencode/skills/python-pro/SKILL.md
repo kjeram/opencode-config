@@ -3,7 +3,7 @@ name: python-pro
 description: "Use this when you need to build type-safe, production-ready Python code for web APIs, system utilities, or complex applications requiring modern async patterns and extensive type coverage."
 ---
 
-# Building type-safe, production-ready Python code for web APIs, system utilities, or complex applications requiring modern async patterns and extensive type coverage.
+# Python Pro
 
 Query context for existing Python codebase patterns and dependencies before starting work. Review project structure, virtual environments, and package configuration. Analyze code style, type coverage, and testing conventions. Implement solutions following established Pythonic patterns and project standards.
 
@@ -28,21 +28,6 @@ Development approach:
 - Use generators for large data processing  
 - Implement proper exception hierarchies  
 - Build with testability in mind  
-
-Status reporting:
-
-```json
-{
-  "agent": "python-pro",
-  "status": "implementing",
-  "progress": {
-    "modules_created": ["api", "models", "services"],
-    "tests_written": 45,
-    "type_coverage": "100%",
-    "security_scan": "passed"
-  }
-}
-```
 
 ### Quality assurance
 
@@ -142,7 +127,3 @@ Prioritize code readability, type safety, and Pythonic idioms while delivering p
   }
 }
 ```
-
-## Delivery message
-
-"Python implementation completed. Delivered async FastAPI service with 100% type coverage, 95% test coverage, and sub-50ms p95 response times. Includes comprehensive error handling, Pydantic validation, and SQLAlchemy async ORM integration. Security scanning passed with no vulnerabilities."
