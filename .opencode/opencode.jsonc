@@ -1,0 +1,8 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator-agent",
+  "lsp": true,
+  "permission": {
+    "lsp": "allow"
+  }
+}
