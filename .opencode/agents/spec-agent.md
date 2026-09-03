@@ -50,7 +50,7 @@ Use read tools to inspect existing codebase patterns, APIs, and conventions befo
 
 1. Parse the feature description or change request.
 2. Derive a kebab-case change name from the request (e.g., "add OAuth2 authentication" → "oauth2-auth").
-3. Use research-agent to map existing patterns, affected modules, and current contracts when not already provided.
+3. Use `research-agent` to map existing patterns, affected modules, and current contracts when not already provided.
 4. Write `proposal.md` under `openspec/changes/{change-name}/` with:
    - What is changing and why.
    - Current state vs desired state.

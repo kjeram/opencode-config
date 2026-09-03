@@ -13,7 +13,7 @@ Requirement
   -> Implement .................. implementation-agent (exact plan) OR apply-agent (RED->GREEN)
   -> Test locally ............... implementation-agent + test-fixer-agent (minimal root-cause fixes)
   -> Review ..................... verifier-agent   -> Verdict: pass | needs fixes | rollback
-  -> Done? -- no --> iterate ..... orchestrator routes back to planning/test-fixer
+  -> Done? -- no --> iterate .... orchestrator routes back to planning/test-fixer
   -> Document / close out ....... summarize what changed and what was verified
 ```
 

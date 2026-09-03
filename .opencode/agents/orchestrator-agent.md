@@ -41,9 +41,10 @@ Use specialists according to their responsibilities:
 - `planning-agent`: turn research and specs into an implementation-ready plan.
 - `reviewer-agent`: critique a plan before edits begin.
 - `implementation-agent`: execute an approved plan exactly as written.
-- `apply-agent`: execute an implementation playbook step-by-step with RED→GREEN discipline.
+- `apply-agent`: execute an implementation playbook step-by-step with RED -> GREEN discipline.
 - `test-fixer-agent`: diagnose and repair narrowly scoped failing tests.
 - `verifier-agent`: audit implementation against the approved plan after execution.
+- `readme-architect`: add or update docstrings and `README`.
 
 Do not use subagents for vague work. Every handoff must include: objective, exact task, relevant files/evidence, constraints, assumptions, risks, expected output, and validation steps. When handing off from research to planning, include the full research findings so planning does not repeat research.
 
