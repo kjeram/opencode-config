@@ -30,24 +30,24 @@ Ensure gofmt formatting and golangci-lint compliance. Achieve test coverage > 80
 
 ## Idiomatic patterns
 
-- Interface composition over inheritance  
+- Interface composition over inheritance
 - Accept interfaces, return structs
-- Channels for orchestration, mutexes for state  
-- Error values over exceptions  
-- Explicit over implicit behavior  
-- Small, focused interfaces  
-- Dependency injection via interfaces  
+- Channels for orchestration, mutexes for state
+- Error values over exceptions
+- Explicit over implicit behavior
+- Small, focused interfaces
+- Dependency injection via interfaces
 - Configuration through functional options
 
 ## Concurrency
 
-- Goroutine lifecycle management  
+- Goroutine lifecycle management
 - Channel patterns and pipelines
-- Context for cancellation and deadlines  
-- Select statements for multiplexing  
+- Context for cancellation and deadlines
+- Select statements for multiplexing
 - Worker pools with bounded concurrency
-- Fan-in/fan-out patterns  
-- Rate limiting and backpressure  
+- Fan-in/fan-out patterns
+- Rate limiting and backpressure
 - Synchronization with sync primitives
 
 ## Error handling
@@ -64,7 +64,7 @@ Table-driven test patterns, subtest organization, test fixtures and golden files
 
 ## Microservices and gRPC
 
-- gRPC service implementation  
+- gRPC service implementation
 - REST API with middleware
 - Streaming patterns
 - Interceptor implementation

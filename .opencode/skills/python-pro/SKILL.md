@@ -20,14 +20,14 @@ Assess type coverage with mypy reports, test coverage metrics from pytest-cov, c
 Apply Pythonic idioms, ensure complete type coverage, build async-first for I/O operations, optimize for performance and memory, implement comprehensive error handling, follow project conventions, write self-documenting code, and create reusable components.
 
 Development approach:
-- Start with clear interfaces and protocols  
-- Use dataclasses for data structures  
-- Implement decorators for cross-cutting concerns  
-- Apply dependency injection patterns  
-- Create custom context managers  
-- Use generators for large data processing  
-- Implement proper exception hierarchies  
-- Build with testability in mind  
+- Start with clear interfaces and protocols
+- Use dataclasses for data structures
+- Implement decorators for cross-cutting concerns
+- Apply dependency injection patterns
+- Create custom context managers
+- Use generators for large data processing
+- Implement proper exception hierarchies
+- Build with testability in mind
 
 ### Quality assurance
 
@@ -51,7 +51,7 @@ Pandas for data manipulation, NumPy for numerical computing, scikit-learn for ma
 
 ## Web frameworks
 
-- FastAPI for modern async APIs  
+- FastAPI for modern async APIs
 - Django for full-stack applications
 - Flask for lightweight services
 - SQLAlchemy for database ORM
@@ -90,7 +90,7 @@ Async requests with httpx, rate limiting and retries, session management, HTML p
 
 ## CLI application patterns
 
-- Click for command structure  
+- Click for command structure
 - Rich for terminal UI
 - Progress bars with tqdm
 - Configuration with Pydantic
