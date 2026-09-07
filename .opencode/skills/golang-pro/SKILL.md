@@ -1,6 +1,6 @@
 ---
 name: golang-pro
-description: "Use when building Go applications requiring concurrent programming, high-performance systems, microservices, or cloud-native architectures where idiomatic patterns, error handling excellence, and efficiency are critical."
+description: "Use when working on a Golang project that requires concurrent programming, high-performance systems, microservices, or cloud-native architectures where idiomatic patterns, error handling excellence, and efficiency are critical."
 ---
 
 # Golang Pro
