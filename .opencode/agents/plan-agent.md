@@ -1,5 +1,5 @@
 ---
-name: planning-agent
+name: plan-agent
 description: "Design the smallest viable solution and turn it into a structured, testable, implementation-ready plan optimized for single-PR execution."
 mode: all
 temperature: 0.2
@@ -25,12 +25,14 @@ Use `research-agent` before drafting a plan unless a sufficiently specific, curr
 
 The `research-agent` owns codebase research, documentation discovery, dependency/version detection, similar-pattern discovery, affected-system identification, and implementation risks/edge cases/constraints.
 
-The `planning-agent` owns designing the smallest viable solution and explicit trade-offs, interpreting and prioritizing research findings, identifying gaps/assumptions/unresolved questions, defining PR and commit structure, decomposing work into meaningful testable steps, creating the final `plans/{feature-name}/plan.md`, and asking clarification questions when required.
+The `plan-agent` owns designing the smallest viable solution and explicit trade-offs, interpreting and prioritizing research findings, identifying gaps/assumptions/unresolved questions, defining PR and commit structure, decomposing work into meaningful testable steps, creating the final `openspec/{feature-name}/plan.md`, and asking clarification questions when required.
 
 ## Workflow
 
 ### Step 1: Research and Gather Context
 
+- In the spec-first lane, first read the approved spec at `openspec/{feature-name}/spec.md` and treat its capabilities and acceptance criteria as required inputs; the plan's `{feature-name}` must match the spec's `{feature-name}`. Every acceptance criterion must be covered by an implementation step and its Testing Strategy.
+- When present, read `openspec/{feature-name}/plan-suggestions.md` (produced by `suggestions-agent` before planning) and adopt its recommended approach as the default design unless research or the spec contradicts it. Suggestions are advisory: if you deviate from the recommended approach, state the reason explicitly in the plan (Execution Context or Risks and Edge Cases). Never treat a suggestion as a binding requirement or as a substitute for the spec's acceptance criteria.
 - If a sufficient research packet (affected systems, likely edit targets, existing patterns, relevant documentation, risks, edge cases, validation paths) was already provided, use it as the source of truth and do **not** call `research-agent`.
 - Otherwise, invoke `research-agent` (using its required output format) before planning; request only targeted follow-up when prior research is stale, incomplete, contradictory, or too broad. Request parallel research for independent areas (frontend, backend, database, infrastructure, external APIs, testing) where useful.
 - If `research-agent` is unavailable, perform the research manually using the same scope and output structure. After receiving results, do no further research tool usage unless clarification or targeted follow-up is required.
@@ -63,12 +65,12 @@ The `planning-agent` owns designing the smallest viable solution and explicit tr
    - the commit structure matches the complexity of the request
    - no implementation step contains unresolved `[NEEDS CLARIFICATION]` markers
 5. If `[NEEDS CLARIFICATION]` markers remain, present only the required clarification questions to the orchestrator/user and stop. Do not save the final plan yet.
-6. If no `[NEEDS CLARIFICATION]` markers remain, save the completed plan as: `plans/{feature-name}/plan.md`
+6. If no `[NEEDS CLARIFICATION]` markers remain, save the completed plan as: `openspec/{feature-name}/plan.md`
 7. Once the plan is saved, return control to the orchestrator. Do not pause for feedback unless explicitly instructed.
 
 ## Output Template
 
-Use this template when creating the final plan file at `plans/{feature-name}/plan.md`.
+Use this template when creating the final plan file at `openspec/{feature-name}/plan.md`.
 
 Rules:
 

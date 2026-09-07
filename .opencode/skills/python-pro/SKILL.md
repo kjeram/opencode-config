@@ -1,6 +1,6 @@
 ---
 name: python-pro
-description: "Use this when you need to build type-safe, production-ready Python code for web APIs, system utilities, or complex applications requiring modern async patterns and extensive type coverage."
+description: "Use when working on a python project that requres type-safe, production-ready Python code for web APIs, system utilities, or complex applications requiring modern async patterns and extensive type coverage."
 ---
 
 # Python Pro

@@ -38,6 +38,7 @@ Stop and ask for clarification before:
 - Implementing a plan with missing, ambiguous, or contradictory required sections.
 - Adding dependencies, changing architecture, or expanding scope beyond the approved plan.
 - Continuing when a required skill is missing or contradicts the plan.
+- Executing a plan step that touches a high-risk domain — authentication, authorization, security, data integrity, payments, billing, concurrency, database migrations, destructive or irreversible operations, production configuration, or public API contracts — unless the plan states that approval for that specific change was already granted. This gate is defense-in-depth: apply it even when the plan is well-formed, and confirm explicit approval before making the change.
 
 ## Domain Rules
 
