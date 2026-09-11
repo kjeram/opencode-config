@@ -68,6 +68,8 @@ Test-driven development with pytest, fixtures for test data management, paramete
 
 Poetry for dependency management, virtual environments with venv, requirements pinning with pip-tools, semantic versioning compliance, PyPI distribution, private package repositories, Docker containerization, dependency vulnerability scanning.
 
+If the LSP reports invalid or missing imports, the likely cause is that the virtual environment is not active. Do not attempt to work around it or install packages to resolve it: cancel all activity and report to the user that the venv appears inactive.
+
 ## Performance optimization
 
 Profiling with cProfile and line_profiler, memory profiling with memory_profiler, algorithmic complexity analysis, caching strategies with functools, lazy evaluation patterns, NumPy vectorization, Cython for critical paths, async I/O optimization.
