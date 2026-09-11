@@ -17,6 +17,7 @@ permission:
     "test-fixer-agent": allow
     "verifier-agent": allow
     "documentation-agent": allow
+    "git-agent": allow
   question: allow
 ---
 
@@ -40,12 +41,13 @@ Use specialists according to their responsibilities:
 - `research-agent`: investigate code, patterns, dependencies, docs, repro paths, and likely root causes.
 - `spec-agent`: turn feature description into a spec-first artifact (`spec.md`) with acceptance criteria.
 - `reviewer-agent`: critique a spec or plan before continuing.
-- `suggestions-agent`: suggest solutions for a specific problem. In the spec-first lane, tell it the stage and `{feature-name}` so it writes `openspec/{feature-name}/spec-suggestions.md` (before the spec) or `openspec/{feature-name}/plan-suggestions.md` (before the plan).
+- `suggestions-agent`: suggest solutions for a specific problem.
 - `plan-agent`: turn research and specs into an implementation-ready plan (`plan.md`).
 - `implementation-agent`: execute an approved plan exactly as written.
 - `test-fixer-agent`: diagnose and repair narrowly scoped failing tests.
 - `verifier-agent`: audit implementation against the approved plan after execution.
 - `documentation-agent`: update documentation where necessary to explain non-obvious behavior.
+- `git-agent`: commit only the explicit set of repo-root-relative files the Spec-First lane produced; abort without committing if the working tree has pre-existing unrelated changes.
 
 Do not use subagents for vague work. Every handoff must include: objective, exact task, relevant files/evidence, constraints, assumptions, risks, expected output, and validation steps. When handing off from research to planning, include the full research findings so planning does not repeat research.
 
@@ -53,11 +55,9 @@ Do not use subagents for vague work. Every handoff must include: objective, exac
 
 Choose a lane based on risk. Use `question` if unsure:
 - **Fast**: research -> plan -> implementation. Review/verify only when behavior changes.
-- **Standard**: research -> suggestions -> plan -> review -> implementation -> test -> verify.
-- **High-Risk**: research -> plan -> review -> implementation -> verify.
-- **Spec-First**: research -> suggestions (`spec-suggestions.md`) -> spec -> review -> suggestions (`plan-suggestions.md`) -> plan -> review -> implementation -> test -> verify -> document.
-
-`suggestions-agent` writes `openspec/{feature-name}/spec-suggestions.md` before the spec and `openspec/{feature-name}/plan-suggestions.md` before the plan; both are advisory inputs. Proceed past the review gate to the second suggestions stage only when the spec review verdict is `solid`; a `needs changes` verdict routes back to `spec-agent`, and an `unsafe` verdict is a fast-fail (see Failure Modes).
+- **Standard**: research -> plan -> review -> implementation -> test -> verify.
+- **High-Risk**: research -> plan -> implementation -> verify.
+- **Spec-First**: research -> spec -> review -> plan -> review -> implementation -> test -> verify -> document -> commit.
 
 ## Approval Gates
 
@@ -79,6 +79,7 @@ Lanes are defined canonically in the Lanes section above (Fast, Standard, High-R
   - Outside the spec-first lane, route `suggestions-agent` responses that contain more than one distinct approach back to the user via the `question` tool.
 - Allow `implementation-agent` to fix test failures only when the cause is obvious, local, minimal, within plan scope, and does not repeat after one fix attempt.
 - If fixing tests may require changing intended product behavior, stop and ask for approval.
+- When the Spec-First lane completes (through `document`), hand off to `git-agent` with (a) the explicit list of files the lane changed, expressed as **repo-root-relative paths** (git status emits repo-root-relative paths; `git-agent` normalizes the list against the repo root), and (b) a commit message or message guidance. `git-agent` commits only those files and aborts/reports if the working tree is uncommittably unclean. This commit step applies to the Spec-First lane only; do not add it to the Fast, Standard, or High-Risk lanes, and do not add an approval gate that blocks the commit.
 
 ## Workflow
 

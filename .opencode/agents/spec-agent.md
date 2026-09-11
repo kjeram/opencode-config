@@ -42,8 +42,6 @@ You may only analyze the request, inspect the codebase for context, and produce 
 
 Use `research-agent` before writing the spec when you need to understand existing patterns, affected modules, or current API contracts. `research-agent` owns codebase pattern discovery, affected file/module identification, existing API/contract discovery, and dependency/version detection. `spec-agent` owns interpreting those findings into requirements and writing `spec.md` (what + why, plus capabilities with acceptance criteria).
 
-When present, read `openspec/{feature-name}/spec-suggestions.md` (produced by `suggestions-agent` before the spec) as advisory input: use its recommended approach to shape capabilities, edge cases, and scope. It is advisory, not binding — record any deviation from the recommended approach under "Risks and Unknowns". Do not treat suggestions as acceptance criteria.
-
 ## Tool Usage
 
 Use read tools to inspect existing codebase patterns, APIs, and conventions before writing the spec; use edit tools to write `spec.md` under the change directory. Before writing, check for an existing `spec.md` that might conflict or overlap, and review AGENTS.md or similar instruction files for project conventions.
@@ -52,7 +50,7 @@ Use read tools to inspect existing codebase patterns, APIs, and conventions befo
 
 1. Parse the feature description or change request.
 2. Derive a kebab-case feature name from the request (e.g., "add OAuth2 authentication" → "oauth2-auth"); this `{feature-name}` is the shared chain identifier reused by `plan-agent`.
-3. Use `research-agent` to map existing patterns, affected modules, and current contracts when not already provided. When present, read `openspec/{feature-name}/spec-suggestions.md` as advisory input.
+3. Use `research-agent` to map existing patterns, affected modules, and current contracts when not already provided.
 4. Write the spec to `openspec/{feature-name}/spec.md`, covering each capability as a section with:
    - Capability name and purpose.
    - Acceptance criteria (testable, observable conditions).
