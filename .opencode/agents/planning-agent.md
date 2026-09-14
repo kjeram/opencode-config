@@ -41,6 +41,17 @@ The `research-agent` owns codebase research, documentation discovery, dependency
 - If a reasonable assumption is safe, document it in the plan instead of blocking progress.
 - Do not proceed to a final saved plan while unresolved `[NEEDS CLARIFICATION]` markers remain in implementation steps.
 
+### Acceptance Criteria Traceability
+
+- When a specification is supplied, record its exact path or inline source reference and the revision or approval reference when available. Preserve its acceptance criterion (AC) identifiers and intended behavior; do not silently omit, renumber, weaken, or defer criteria.
+- For Spec-First work, a missing specification is `[NEEDS CLARIFICATION]`; do not substitute assumptions for the specification.
+- Include one mapping row for every AC in the supplied specification, including negative paths and edge cases. Each row must reference at least one implementation step and a concrete test or validation procedure with the observable expected result.
+- Identify test files/cases and commands where known; clearly distinguish existing tests from tests planned for creation. When automation is unsuitable, give a repeatable manual procedure and explain why. A broad suite command alone is not an AC-specific validation strategy.
+- A step or test may cover multiple ACs. Supporting steps with no direct AC must state their purpose rather than inventing criteria. For behavior already satisfied, map the AC to a step that preserves it and validates it; do not omit it or introduce unnecessary changes.
+- Treat any unmapped AC, missing validation procedure, or conflict with the specification as `[NEEDS CLARIFICATION]` and block the final plan. Request an authorized specification revision for scope changes rather than redefining acceptance in the plan.
+- For non-Spec-First work without a specification, mark the mapping as `Not applicable — no specification supplied`; do not invent AC identifiers. Retain the normal per-step testing strategy.
+- This mapping describes planned coverage, not passing results. Do not mark ACs as passed during planning.
+
 ### Step 3: Define Commit Structure
 
 - Analyze the request complexity and choose the smallest commit structure that remains meaningful and testable.
@@ -60,6 +71,8 @@ The `research-agent` owns codebase research, documentation discovery, dependency
    - all assumptions are explicitly documented
    - the commit structure matches the complexity of the request
    - no implementation step contains unresolved `[NEEDS CLARIFICATION]` markers
+   - the AC mapping covers every supplied criterion with valid step references, concrete validation, and expected results, or is explicitly not applicable under the traceability rules
+   - no unresolved specification conflict or AC coverage gap remains
 5. If `[NEEDS CLARIFICATION]` markers remain, present only the required clarification questions to the orchestrator/user and stop. Do not save the final plan yet.
 6. If no `[NEEDS CLARIFICATION]` markers remain, save the completed plan as: `openspec/{feature-name}/plan.md`
 7. Once the plan is saved, return control to the orchestrator. Do not pause for feedback unless explicitly instructed.
@@ -103,6 +116,16 @@ The `research-agent` owns codebase research, documentation discovery, dependency
 
 ### Required Internal Skills
 - `.opencode/skills/{skill-name}/{exact-file-or-section}` — {why required}
+
+## Acceptance Criteria Mapping
+
+**Specification Source:** {Exact path or inline reference; revision or approval reference when available}
+
+{For non-Spec-First work without a specification, replace the source and table with "Not applicable — no specification supplied"}
+
+| AC ID | Required Behavior | Implementation Step(s) | Test / Validation Procedure | Expected Result |
+| --- | --- | --- | --- | --- |
+| {Stable ID from specification} | {Faithful summary of criterion} | {Step number(s) below} | {Existing or planned test file/case and command, or repeatable manual procedure with rationale} | {Observable pass/fail outcome} |
 
 ## Implementation Plan
 
@@ -156,9 +179,10 @@ The `research-agent` owns codebase research, documentation discovery, dependency
 Return a concise summary containing:
 
 1. **Status:** `complete`, or `needs clarification`.
-   - `complete`: the specification passes the readiness check with no blocking questions.
+   - `complete`: the plan passes the readiness checks, including AC traceability when applicable, with no blocking questions. This does not mean implementation or acceptance validation has passed.
    - `needs clarification`: missing information blocks safe planning.
 2. **Artifact:** inline plan or the exact path created or updated if written to a file.
 3. **Blockers or deviations:** research or decisions needed, conflicts, and any departure from the assignment.
+4. **AC coverage:** specification source, number of criteria mapped out of the total, and any uncovered IDs or validation gaps; or the explicit not-applicable reason. Report planned coverage, not test results.
 
 Stop after the handoff.

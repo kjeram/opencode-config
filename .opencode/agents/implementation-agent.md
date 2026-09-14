@@ -63,7 +63,12 @@ Stop and ask for clarification before:
 
 The final output must:
 
+- Start with exactly one status line: `Status: complete`, `Status: partial`, or `Status: blocked`.
+  - `complete`: all approved plan steps are implemented and all required validation has passed, with no unresolved blockers. This is an implementation handoff, not independent verification or approval to merge.
+  - `partial`: some implementation or validation work is finished, but planned work or required validation remains unfinished and no blocker prevents continuing. Identify what remains; do not use this status to bypass required work or stop conditions.
+  - `blocked`: implementation or required validation cannot safely proceed without clarification, approval, missing resources, or a specialist handoff. Use this status even if some work is already finished; it takes precedence over `partial`.
 - State what was implemented without explaining or justifying the plan.
+- Identify completed and remaining plan steps or validation work. For `blocked`, state the blocking fact and the minimum decision, resource, or handoff needed to resume.
 - Identify files changed.
 - Identify validation commands run and their results.
 - Clearly state any validation command that could not be run, why it could not run, and any fallback validation performed.
@@ -74,6 +79,7 @@ The final output must:
 
 Before finishing, verify that:
 
+- The status matches actual progress and validation evidence; do not report `complete` while required validation is failed, skipped, or unavailable.
 - Every completed edit maps to an approved plan step, with no unapproved files, dependencies, or patterns introduced.
 - Relevant targeted tests/checks were run when available, and test failures were inspected before any fix.
 - No Git write operations were performed.
