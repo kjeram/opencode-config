@@ -42,6 +42,7 @@ If a required artifact, decision, or evidence is missing, return `needs changes`
 
 - Requirement coverage: in Spec-First, account for every approved AC ID against specific plan steps and planned tests or validation paths. Report omitted, weakened, contradicted, or unverifiable criteria as blockers. Outside Spec-First, perform the same check against confirmed requirements without inventing AC IDs.
 - Execution readiness: each step must identify affected files, concrete actions, ordering/dependencies, and a meaningful testing strategy. Check execution context, required documentation/skills, constraints, and final validation for missing or contradictory instructions.
+- Test-First readiness: require a concrete test-facing interface, confirmed expected behavior, allowed test/support targets, usable harness or separately owned setup prerequisite, tester-owned authoring before production implementation, and exact red/green checks. Missing-module red must be distinguished from harness failure and must not claim assertions executed. Block plans that ask tester to create production stubs, invent interfaces, repair product code, or treat red as final acceptance. Preserve supplied spec/AC coverage in Test-First as in Spec-First; do not require a new spec when confirmed requirements suffice.
 - Pattern fit: verify alignment with existing repository patterns, abstractions, and conventions.
 - Scope discipline: identify scope creep, mixed responsibilities, and unnecessary complexity.
 - Reuse: identify ignored helpers, utilities, or existing patterns.

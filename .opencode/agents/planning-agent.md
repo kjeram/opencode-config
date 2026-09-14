@@ -52,6 +52,14 @@ The `research-agent` owns codebase research, documentation discovery, dependency
 - For non-Spec-First work without a specification, mark the mapping as `Not applicable — no specification supplied`; do not invent AC identifiers. Retain the normal per-step testing strategy.
 - This mapping describes planned coverage, not passing results. Do not mark ACs as passed during planning.
 
+### Test-First Execution Contract
+
+- For Test-First, define the test-facing contract before test authoring: planned module/import paths, exports/signatures or component props, and observable results/errors/side effects as applicable. Derive behavior from confirmed requirements or the supplied spec; do not move implementation design into the behavioral specification. Missing consequential interface decisions block readiness.
+- Assign test authoring and any allowed test-only support to `tester-agent`, followed by an explicit red checkpoint, production work by `implementation-agent`, and final green validation. Record exact test/support and production targets, commands with working directories, expected pre-implementation failures, and required post-implementation outcomes. No production stubs or harness/configuration changes may be assigned to tester.
+- Establish that a usable test harness exists. If setup/configuration/dependencies are needed first, plan that narrowly for implementation with applicable approvals, then return to test authoring before feature implementation. Distinguish planned missing-module/export failures from broken discovery or environment failures; state when assertions cannot run until implementation exists.
+- Carry supplied AC IDs through test cases and implementation steps. Tests express the agreed behavior, not guessed APIs or mocked replacements for the subject. Expected red is a phase checkpoint, never a passing final validation or feature acceptance result.
+- Test and production phases may share one final commit-sized unit; do not require committing a deliberately red intermediate state or authorize Git writes. Make phase ownership and order explicit within that unit. For other lanes, use the normal plan without adding a Test-First contract unnecessarily.
+
 ### Step 3: Define Commit Structure
 
 - Analyze the request complexity and choose the smallest commit structure that remains meaningful and testable.
@@ -72,7 +80,8 @@ The `research-agent` owns codebase research, documentation discovery, dependency
    - the commit structure matches the complexity of the request
    - no implementation step contains unresolved `[NEEDS CLARIFICATION]` markers
    - the AC mapping covers every supplied criterion with valid step references, concrete validation, and expected results, or is explicitly not applicable under the traceability rules
-   - no unresolved specification conflict or AC coverage gap remains
+    - no unresolved specification conflict or AC coverage gap remains
+    - for Test-First, test-facing interfaces, phase owners, harness prerequisites, red checkpoint evidence, and final green commands are explicit
 5. If `[NEEDS CLARIFICATION]` markers remain, present only the required clarification questions to the orchestrator/user and stop. Do not save the final plan yet.
 6. If no `[NEEDS CLARIFICATION]` markers remain, save the completed plan as: `openspec/{feature-name}/plan.md`
 7. Once the plan is saved, return control to the orchestrator. Do not pause for feedback unless explicitly instructed.
@@ -128,6 +137,8 @@ The `research-agent` owns codebase research, documentation discovery, dependency
 | {Stable ID from specification} | {Faithful summary of criterion} | {Step number(s) below} | {Existing or planned test file/case and command, or repeatable manual procedure with rationale} | {Observable pass/fail outcome} |
 
 ## Implementation Plan
+
+{For Test-First only: include the test-facing contract, harness prerequisites, allowed test/support targets, tester -> red checkpoint -> implementation ownership/order, exact red/green commands and working directories, and expected outcomes. Omit this note/section for other lanes.}
 
 ### Step 1: {Step Name}
 
