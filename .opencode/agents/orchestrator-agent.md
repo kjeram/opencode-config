@@ -12,7 +12,8 @@ permission:
     "*": deny
     "research-agent": allow
     "spec-agent": allow
-    "reviewer-agent": allow
+    "spec-review-agent": allow
+    "plan-review-agent": allow
     "plan-agent": allow
     "suggestions-agent": allow
     "implementation-agent": allow
@@ -97,6 +98,6 @@ Before finishing, verify that:
 
 - If a specialist output is incomplete, contradictory, too broad, or not tied to the actual change, stop and correct the handoff before continuing.
 - If `verifier-agent` returns `needs fixes`, route narrowly back to `plan-agent` or `test-fixer-agent` based on the defect. If it returns `rollback`, stop and report instead of routing more work.
-- If `reviewer-agent` returns `unsafe` on a spec or plan: stop the lane and report the blocking finding to the user instead of routing to suggestions, planning, or implementation.
+- If `spec-review-agent` returns `unsafe` on a spec: stop the lane and report the blocking finding to the user instead of routing to suggestions, planning, or implementation.
+- If `plan-review-agent` returns `unsafe` on a plan: stop the lane and report the blocking finding to the user instead of routing to suggestions, planning, or implementation.
 - If a plan or spec has been rejected three times in a row, stop and report.
-
