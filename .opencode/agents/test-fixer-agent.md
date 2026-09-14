@@ -1,7 +1,7 @@
 ---
 name: test-fixer-agent
 description: "Diagnose and fix failing unit, integration, and e2e tests with minimal changes while preserving intended behavior."
-mode: all
+mode: subagent
 temperature: 0.1
 permission:
   read: allow

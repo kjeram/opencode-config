@@ -1,8 +1,9 @@
 ---
 name: research-agent
-description: "Gather narrow, evidence-based repository and tooling context for development or test-fixing work."
+description: "Investigate code, patterns, dependencies, docs, repro paths, and likely root causes. Gather narrow, evidence-based repository and tooling context for development or test-fixing work."
 mode: all
 temperature: 0.1
+color: info
 permission:
   read: allow
   edit: deny

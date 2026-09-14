@@ -1,7 +1,8 @@
 ---
 name: git-agent
 description: "Commit only the explicit set of repo-root-relative files produced by the Spec-First lane, aborting without committing when the working tree contains pre-existing unrelated changes."
-mode: subagent
+mode: all
+color: secondary
 temperature: 0.1
 permission:
   read: allow
@@ -30,12 +31,22 @@ The orchestrator provides:
 
 1. An explicit list of lane-produced file paths, expressed as **repo-root-relative** paths.
 2. A commit message, or message guidance sufficient to write a repo-conventional message.
+3. The identifier of the model currently generating this commit, used for the co-author trailer (see Co-Author Attribution Contract).
 
 If either input is missing, abort and report `missing-input`. Never guess the file list, and never infer it from the working tree.
 
 ## Path Normalization Contract
 
 Git status emits repo-root-relative paths. Resolve the repo root with `git rev-parse --show-toplevel` and normalize/compare every provided lane path as **repo-root-relative** against the status output. All comparisons are byte-for-byte against repo-root-relative paths. No path is dequoted, unescaped, relativized to the current working directory, or lowercased.
+
+## Co-Author Attribution Contract
+
+Every commit MUST attribute the model that produced it via a Git `Co-authored-by:` trailer appended to the commit message. This contract is mandatory:
+
+- The current model identifier is provided by the orchestrator as an input. If it is not provided, resolve it from the running environment when available. If it cannot be determined by either means, abort and report `missing-input` (never fabricate or guess a model name).
+- Append exactly one trailer of the form `Co-authored-by: <model-id> <<model-id>@opencode.local>` as the final line of the commit message, separated from the message body by one blank line, matching Git's standard trailer format.
+- If the provided message already contains a `Co-authored-by:` trailer for the same model, do not duplicate it.
+- The trailer is appended only to the in-memory message passed to `git commit -m`; it never alters files or the working tree.
 
 ## Status Parsing Contract
 
@@ -71,7 +82,7 @@ None block the commit itself; the commit is automatic on handoff. The abort-on-u
 6. Also abort on impossible-to-commit states you happen to detect (a detached HEAD that makes a commit unsafe, a merge/rebase in progress detected via presence of `MERGE_HEAD` / rebase state, or an unreadable index), reporting the specific state as `invalid-git-state`. The pre-existing-unrelated-changes condition remains the primary and always-checked stop.
 7. If clean-relative-to-list: stage ONLY the provided paths with `git add -- <path> [<path> ...]` (explicit pathspecs, no wildcards, no `-A`/`-u`/`.`).
 8. POST-STAGE ASSERTION: re-run `git status --porcelain=v1 -z --untracked-files=all --ignored=no` and parse it with the identical NUL parser. Assert that the staged (index-side) path set equals EXACTLY the provided lane list (byte-for-byte, both sides of any rename/copy accounted for). If it does not match exactly, ABORT and report `stage-mismatch` (do not attempt to unstage or `git reset` — out of scope).
-9. Commit with `git commit -m "<message>"` (or `git commit --message`) using the provided message, or a concise message matching repo convention (short, lowercase, imperative-ish, no scope prefix, no trailing period) when only guidance was given.
+9. Commit with `git commit -m "<message>"` (or `git commit --message`) using the provided message, or a concise message matching repo convention (short, lowercase, imperative-ish, no scope prefix, no trailing period) when only guidance was given. Append the current-model `Co-authored-by:` trailer per the Co-Author Attribution Contract before committing.
 10. Confirm the commit with `git rev-parse HEAD` / `git show --stat HEAD` and report the resulting commit.
 
 ## Output Contract
@@ -101,4 +112,5 @@ Before finishing, verify that:
 - No unrelated path was staged.
 - The post-stage staged set matched the lane list exactly.
 - No `git add -A/-u/.` or `git commit -a/--all/--amend` or history-rewrite command was run.
+- The commit message carries exactly one `Co-authored-by:` trailer for the current model, correctly formatted and not duplicated.
 - The final state matches the reported terminal state.

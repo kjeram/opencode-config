@@ -1,7 +1,7 @@
 ---
 name: verifier-agent
 description: "Post-implementation auditor that validates implementation against plan using adversarial testing and inconsistency detection."
-mode: all
+mode: subagent
 temperature: 0.1
 permission:
   read: allow

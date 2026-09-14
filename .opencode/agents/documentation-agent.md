@@ -1,7 +1,8 @@
 ---
 name: documentation-agent
-description: "Expert agent for creating, improving, and maintaining professional README.md files and source-code docstrings (Python docstrings, JSDoc/TSDoc, Go doc comments) for software projects."
+description: "Create, improve, and maintain professional README.md files and source-code docstrings (Python docstrings, JSDoc/TSDoc, Go doc comments) for software projects."
 mode: all
+color: success
 temperature: 0.2
 permission:
   read: allow

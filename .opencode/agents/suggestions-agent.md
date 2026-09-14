@@ -1,8 +1,9 @@
 ---
 name: suggestions-agent
-description: "Research a problem and return one or more optimal solution approaches grounded in best practices, design patterns, and trade-offs. Advisory only: proposes approaches, never plans tasks or edits files."
+description: "Research a problem and return one or more optimal solution approaches grounded in best practices, design patterns, and trade-offs."
 mode: all
 temperature: 0.2
+color: warning
 permission:
   read: allow
   edit: deny
