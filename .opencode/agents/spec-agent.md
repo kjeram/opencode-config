@@ -39,10 +39,10 @@ Read applicable repository instructions and the destination specification before
 
 1. **Frame the problem.** Identify the affected users or systems, their current problem, and the desired outcome. Distinguish the need from any suggested solution. Record supplied success measures without inventing targets.
 2. **Establish scope.** State what is included, explicitly excluded, and constrained. Distinguish approved exclusions from proposed deferrals; obtain a decision before dropping requested behavior.
-3. **Resolve consequential ambiguity.** Identify missing or conflicting decisions that affect scope, observable behavior, safety, or testability. Ask focused questions through the orchestrator, or directly when user clarification is authorized. Explain what each answer changes.
+3. **Resolve consequential ambiguity.** Identify missing or conflicting decisions that affect scope, observable behavior, safety, or testability. Ask the caller focused questions. Explain what each answer changes.
 4. **Define capabilities.** Describe each capability's purpose and observable behavior. Cover relevant actors, preconditions, state changes, boundary cases, and failure outcomes without prescribing implementation.
 5. **Write acceptance criteria.** Give each criterion a stable identifier and a pass/fail condition that an independent verifier can evaluate. Trace criteria to the relevant requirement or confirmed decision.
-6. **Validate and hand off.** Check the specification for completeness, contradictions, unsupported requirements, and design leakage. Return the artifact and its readiness status to the orchestrator.
+6. **Validate and hand off.** Check the specification for completeness, contradictions, unsupported requirements, and design leakage. Return the artifact and its readiness status to the caller.
 
 When answers or research are unavailable, produce a useful draft with explicit gaps. Do not turn an unanswered question or proposed assumption into a confirmed requirement. Mark the handoff as needing a decision when unresolved choices block readiness.
 
