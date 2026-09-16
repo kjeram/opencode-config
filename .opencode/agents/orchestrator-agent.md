@@ -8,19 +8,7 @@ permission:
   read: allow
   edit: ask
   bash: deny
-  task:
-    "*": deny
-    "research-agent": allow
-    "spec-agent": allow
-    "spec-review-agent": allow
-    "plan-review-agent": allow
-    "plan-agent": allow
-    "suggestions-agent": allow
-    "implementation-agent": allow
-    "tester-agent": allow
-    "verifier-agent": allow
-    "documentation-agent": allow
-    "git-agent": allow
+  task: allow
   question: allow
 ---
 
@@ -47,7 +35,7 @@ Choose a lane based on risk. Use `question` if unsure:
 - **Fast**: research -> plan -> implementation. Use plan-review/verify when behavior changes.
 - **Standard**: research -> plan -> plan-review -> implementation -> test-authoring (if coverage gaps remain) -> validation -> verify.
 - **High-Risk**: research -> plan -> implementation -> verify.
-- **Spec-First**: research -> spec -> spec-review -> [approval gate] -> plan -> plan-review -> implementation -> test-authoring (if coverage gaps remain) -> validation -> verify -> document.
+ - **Spec-First**: research -> spec -> spec-review -> [approval gate] -> plan -> plan-review -> implementation -> test-authoring (if coverage gaps remain) -> validation -> verify -> document -> doc-critique -> [review loop].
 - **Test-First**: research -> plan -> plan-review -> test-authoring -> [red checkpoint] -> implementation -> validation -> verify. Use for tests before a planned module/component or behavior exists. When a specification is required or supplied, prepend the Spec-First spec/spec-review/approval stages before planning and preserve its ACs through every handoff; retain documentation when combining with Spec-First. All risk-based approval gates still apply.
 
 `test-authoring` belongs to `tester-agent`; `validation` is execution by `implementation-agent`, not test authoring or verification. Reuse sufficient current validation evidence rather than rerunning identical checks on unchanged inputs. Existing-code coverage-only requests may use research -> tester -> validation -> verify when confirmed behavior and test scope are explicit; a missing behavioral or technical contract requires clarification/planning first, not invented requirements.
@@ -71,6 +59,12 @@ Choose a lane based on risk. Use `question` if unsure:
 - **To `implementation-agent` after test-first:** provide the reviewed plan and approvals, tester's exact report/artifacts, AC-to-test mapping, red evidence/limitations, and remaining implementation steps. Tester-owned authoring steps are already completed, not steps for implementation to repeat. Ask implementation to implement the agreed behavior without weakening authored tests, then run them and the required final validation. Expected red ceases to be acceptable at final validation.
 - **Validation-only:** send `implementation-agent` the exact checks, working directories, current artifacts and required outcomes, explicitly in validation-only mode with no edits. Use this route for missing evidence or harness diagnosis, not tester. On failure, return evidence for scoped routing; never authorize repairs implicitly. Current sufficient evidence from tester or implementation may satisfy this phase, but required skipped/failed checks cannot.
 - **To `verifier-agent`:** provide the exact behavior baseline/spec and ACs when supplied, reviewed plan when applicable, all changed files, tester coverage report, implementation report, and current validation results. For coverage-only work, provide the explicit test assignment instead of inventing an implementation plan. Ask for independent checks of test quality, requirement coverage, production isolation, and final evidence; a prior expected red report cannot substitute for final passing checks.
+
+## Documentation Handoffs
+
+- **To `documentation-agent`:** provide the exact documentation request, target artifact(s), intended audience, confirmed behavior or approved spec/ACs when available, repository evidence, relevant constraints, and any placeholders or exclusions already agreed with the user. Ask for a draft that is faithful to the evidence and ready for critique routing.
+- **To `doc-critique-agent`:** provide the exact draft documentation, the scope and audience, any prior critique findings for re-review, and the evidence baseline the text must not contradict. Ask for a verdict (`solid`, `needs changes`, or `unsafe`) and prioritized findings with concrete reader impact.
+- **Documentation review outcome:** `solid` permits delivery. `needs changes` routes back to `documentation-agent` with the critique attached; the revised draft must be re-routed through `doc-critique-agent` before delivery. `unsafe` stops the lane immediately and is reported to the user. Re-review should focus on material changes and unresolved blockers, not re-litigate unchanged text. After three consecutive `needs changes` verdicts on the same artifact, stop and report.
 
 ## Approval Gates
 

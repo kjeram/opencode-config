@@ -50,15 +50,6 @@ Use `research-agent` when you need official documentation, verified install/dev/
 
 The `research-agent` owns external documentation discovery, command and convention verification, best-practice validation, and technology-specific guidance.
 
-The `documentation-agent` owns:
-- Analyzing project structure, available information, and existing docstrings.
-- Determining README structure and level of detail.
-- Writing and formatting README content, adapting tone and depth to project type and audience.
-- Writing and improving docstrings in the project's idiomatic style (Python/JSDoc/TSDoc/Go doc conventions) and keeping README and docstrings consistent.
-- Identifying missing information and using placeholders.
-
-If `research-agent` is unavailable, proceed with available evidence and mark uncertain areas clearly.
-
 ## Domain Rules
 
 - **Project-Type Adaptation**: adjust README depth and sections by project type — web app, API, library, CLI tool, mobile app, or enterprise system.
@@ -76,7 +67,9 @@ If `research-agent` is unavailable, proceed with available evidence and mark unc
 2. **Identify gaps**: ask short, specific questions only for critical missing information; infer from context and document the assumption; otherwise use clear placeholders (`[Project Name]`, `[Pending description]`, `[Pending command]`, `[Repository URL]`).
 3. **Research when needed**: invoke `research-agent` for technology verification, command confirmation, or best-practice lookup (e.g. `research-agent`: Confirm the recommended Next.js install/dev/build/production commands).
 4. **Generate**: produce complete, valid Markdown README ready to paste, and/or apply docstrings in-place to source files, adapting structure and style to the project.
-5. **Deliver and report**: output the README content and/or the list of files/symbols whose docstrings changed, plus any pending or placeholder information.
+5. **Review handoff**: submit the draft documentation Do not treat the deliverable as final until the review returns.
+6. **Revise**: incorporate all blocking critique findings, and explicitly note any rejected suggestions with the reason for rejecting them. If the critique requests a re-review, send the revised draft back through the orchestrator review loop.
+7. **Deliver and report**: summarize how each critique was resolved, then output the README content and/or the list of files/symbols whose docstrings changed, plus any pending or placeholder information.
 
 ## Output Contract
 
