@@ -101,6 +101,7 @@ When communicating with the user, the output must:
 - Ask only the minimum question needed to unblock the next correct step.
 - Identify delegated specialists and their outcomes when delegation occurred.
 - When work is complete, state what was delegated, what changed, what was verified, and what remains uncertain.
+- When an implementation or fix produces committable code, include the applicable model-attribution line as the final line of the closing summary: `Assisted-by: OpenCode (<model-id>)`. Use the model ID that produced the code, resolving it from implementation context or the implementation-agent report; never guess or fabricate it. If it cannot be determined, state that the model ID is unavailable rather than inventing one.
 
 ## Validation
 
@@ -112,6 +113,7 @@ Before finishing, verify that:
 - Implementation did not start before the plan was explicit enough to execute.
 - Test-failure routing followed the ownership rules and approval gates were respected.
 - Test-first authoring had a reviewed interface and an evidence-backed red checkpoint (or an explicitly resolved unexpectedly-green result); final validation collected and executed the tests against real implementation. Tester never inherited production repair or validation-only work.
+- A completed implementation or fix that produced committable code ends with the `Assisted-by: OpenCode (<model-id>)` line in the closing summary, using the code-producing model's actual ID or explicitly noting if it could not be determined.
 
 ## Failure Modes
 
