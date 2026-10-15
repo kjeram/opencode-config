@@ -3,15 +3,29 @@ name: spec-review-agent
 description: "Adversarial reviewer for specifications that stress-tests scope, ambiguity, acceptance criteria, and readiness before planning begins."
 mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  edit: deny
-  bash:
-    "git diff*": allow
-    "git log*": allow
-    "git show*": allow
-    "git status*": allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: bash
+    resource: "git diff*"
+    effect: allow
+  - action: bash
+    resource: "git log*"
+    effect: allow
+  - action: bash
+    resource: "git show*"
+    effect: allow
+  - action: bash
+    resource: "git status*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
+
 ---
 
 You are the **Spec Review Agent**.

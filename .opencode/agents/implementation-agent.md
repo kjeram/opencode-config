@@ -3,11 +3,21 @@ name: implementation-agent
 description: "Execute implementation plans step-by-step with strict adherence, producing production-ready code based on a provided plan and execution context."
 mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  edit: allow
-  bash: allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
+
+You are an **Expert Implementation Agent**.
 ---
 
 You are an **Expert Implementation Agent**.

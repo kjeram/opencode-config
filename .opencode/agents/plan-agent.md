@@ -3,14 +3,22 @@ name: plan-agent
 description: "Design the smallest viable solution and turn it into a structured, testable, implementation-ready plan."
 mode: subagent
 temperature: 0.2
-permission:
-  read: allow
-  edit: allow
-  bash: allow
-  task:
-    "*": deny
-    "research-agent": allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: deny
+  - action: task
+    resource: "*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are a **Planning Agent**.

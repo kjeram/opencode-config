@@ -3,14 +3,25 @@ name: tester-agent
 description: "Write tests for existing implementations lacking coverage or planned modules/components before implementation; never implement or repair production code."
 mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  edit: allow
-  bash: allow
-  task:
-    "*": deny
-    "research-agent": allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: allow
+  - action: task
+    resource: "*"
+    effect: deny
+  - action: task
+    resource: "research-agent"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Test Authoring Agent**.

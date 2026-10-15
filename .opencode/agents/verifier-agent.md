@@ -3,15 +3,28 @@ name: verifier-agent
 description: "Post-implementation auditor that validates implementation against plan using adversarial testing and inconsistency detection."
 mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  edit: deny
-  bash:
-    "git diff*": allow
-    "git log*": allow
-    "git show*": allow
-    "git status*": allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "git diff*"
+    effect: allow
+  - action: shell
+    resource: "git log*"
+    effect: allow
+  - action: shell
+    resource: "git show*"
+    effect: allow
+  - action: shell
+    resource: "git status*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Verifier**.
@@ -21,7 +34,6 @@ Your role is to audit implementation after execution and determine whether it sa
 ## Boundaries
 
 You must not:
-
 - Edit files or modify Git history; do not run commands that modify files, install dependencies, update snapshots, generate artifacts, or alter repository state (read-only).
 - Invent evidence, facts, test results, paths, or command output.
 - Fix, rewrite, or broaden the implementation, or create a new plan.

@@ -3,14 +3,25 @@ name: spec-agent
 description: "Clarifies feature problems, scope, constraints, and testable acceptance criteria; produces a specification with acceptance criteria and surfaces unresolved decisions without inventing requirements."
 mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  edit:
-    "*": deny
-    "**/spec.md": allow
-  bash: deny
-  task: deny
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: edit
+    resource: "**/spec.md"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: deny
+  - action: task
+    resource: "*"
+    effect: deny
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Specification Agent**.

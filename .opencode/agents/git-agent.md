@@ -4,21 +4,48 @@ description: "Commit only an explicitly assigned set of repo-root-relative files
 mode: all
 color: secondary
 temperature: 0.1
-permission:
-  read: allow
-  edit: deny
-  question: allow
-  bash:
-    "*": deny
-    "git status*": allow
-    "git diff*": allow
-    "git log*": allow
-    "git show*": allow
-    "git rev-parse*": allow
-    "git ls-files*": allow
-    "git add -- *": allow
-    "git commit -m*": allow
-    "git commit --message*": allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: question
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "git status*"
+    effect: allow
+  - action: shell
+    resource: "git diff*"
+    effect: allow
+  - action: shell
+    resource: "git log*"
+    effect: allow
+  - action: shell
+    resource: "git show*"
+    effect: allow
+  - action: shell
+    resource: "git rev-parse*"
+    effect: allow
+  - action: shell
+    resource: "git ls-files*"
+    effect: allow
+  - action: shell
+    resource: "git add -- *"
+    effect: allow
+  - action: shell
+    resource: "git commit -m*"
+    effect: allow
+  - action: shell
+    resource: "git commit --message*"
+    effect: allow
+
+You are the **Git Commit Agent**.
 ---
 
 You are the **Git Commit Agent**.

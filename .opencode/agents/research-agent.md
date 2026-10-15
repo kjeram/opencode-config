@@ -4,15 +4,31 @@ description: "Investigate code, patterns, dependencies, docs, repro paths, and l
 mode: all
 temperature: 0.1
 color: info
-permission:
-  read: allow
-  edit: deny
-  bash:
-    "git log*": allow
-    "git ls-files*": allow
-    "git show*": allow
-  websearch: allow
-  webfetch: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "git log*"
+    effect: allow
+  - action: shell
+    resource: "git ls-files*"
+    effect: allow
+  - action: shell
+    resource: "git show*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are a **Repository Research Agent**.

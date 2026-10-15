@@ -4,12 +4,22 @@ description: "Coordinate repository specialists to research, plan, review, imple
 mode: primary
 color: primary
 temperature: 0.2
-permission:
-  read: allow
-  edit: ask
-  bash: deny
-  task: allow
-  question: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: ask
+  - action: shell
+    resource: "*"
+    effect: ask
+  - action: task
+    resource: "*"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Orchestrator Agent**.

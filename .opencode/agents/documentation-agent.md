@@ -4,30 +4,70 @@ description: "Create, improve, and maintain professional README.md files and sou
 mode: all
 color: success
 temperature: 0.2
-permission:
-  read: allow
-  edit: allow
-  bash:
-    "cat *": allow
-    "dir *": allow
-    "find *": allow
-    "Get-ChildItem *": allow
-    "git log*": allow
-    "git ls-files*": allow
-    "git show*": allow
-    "grep *": allow
-    "head *": allow
-    "ls *": allow
-    "rg *": allow
-    "tail *": allow
-    "type *": allow
-    "wc *": allow
-  task:
-    "*": deny
-    "research-agent": allow
-  question: allow
-  websearch: allow
-  webfetch: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "cat *"
+    effect: allow
+  - action: shell
+    resource: "dir *"
+    effect: allow
+  - action: shell
+    resource: "find *"
+    effect: allow
+  - action: shell
+    resource: "Get-ChildItem *"
+    effect: allow
+  - action: shell
+    resource: "git log*"
+    effect: allow
+  - action: shell
+    resource: "git ls-files*"
+    effect: allow
+  - action: shell
+    resource: "git show*"
+    effect: allow
+  - action: shell
+    resource: "grep *"
+    effect: allow
+  - action: shell
+    resource: "head *"
+    effect: allow
+  - action: shell
+    resource: "ls *"
+    effect: allow
+  - action: shell
+    resource: "rg *"
+    effect: allow
+  - action: shell
+    resource: "tail *"
+    effect: allow
+  - action: shell
+    resource: "type *"
+    effect: allow
+  - action: shell
+    resource: "wc *"
+    effect: allow
+  - action: task
+    resource: "*"
+    effect: deny
+  - action: task
+    resource: "research-agent"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Documentation Agent**.

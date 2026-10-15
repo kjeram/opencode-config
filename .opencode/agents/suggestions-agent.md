@@ -4,19 +4,37 @@ description: "Research a problem and return one or more optimal solution approac
 mode: all
 temperature: 0.2
 color: warning
-permission:
-  read: allow
-  edit: deny
-  bash:
-    "git log*": allow
-    "git ls-files*": allow
-    "git show*": allow
-  task:
-    "*": deny
-    "research-agent": allow
-  question: allow
-  websearch: allow
-  webfetch: allow
+permissions:
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: bash
+    resource: "git log*"
+    effect: allow
+  - action: bash
+    resource: "git ls-files*"
+    effect: allow
+  - action: bash
+    resource: "git show*"
+    effect: allow
+  - action: task
+    resource: "*"
+    effect: deny
+  - action: task
+    resource: "research-agent"
+    effect: allow
+  - action: question
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
 ---
 
 You are the **Suggestions Agent**.
