@@ -1,8 +1,7 @@
 ---
-name: verifier-agent
-description: "Post-implementation auditor that validates implementation against plan using adversarial testing and inconsistency detection."
+description: Post-implementation auditor that validates implementation against
+  plan using adversarial testing and inconsistency detection.
 mode: subagent
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -11,20 +10,23 @@ permissions:
     resource: "*"
     effect: deny
   - action: shell
-    resource: "git diff*"
+    resource: git diff*
     effect: allow
   - action: shell
-    resource: "git log*"
+    resource: git log*
     effect: allow
   - action: shell
-    resource: "git show*"
+    resource: git show*
     effect: allow
   - action: shell
-    resource: "git status*"
+    resource: git status*
     effect: allow
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are the **Verifier**.

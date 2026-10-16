@@ -1,8 +1,8 @@
 ---
-name: doc-critique-agent
-description: "Review READMEs, code comments, and docstrings for ambiguity, necessity, intended meaning, tech-stack clarity, assumed knowledge, and onboarding gaps without editing files."
+description: Review READMEs, code comments, and docstrings for ambiguity,
+  necessity, intended meaning, tech-stack clarity, assumed knowledge, and
+  onboarding gaps without editing files.
 mode: subagent
-temperature: 0.2
 permissions:
   - action: read
     resource: "*"
@@ -19,12 +19,15 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
-  - action: task
+  - action: subagent
     resource: "*"
     effect: deny
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.2
 ---
 
 You are the **Documentation Critique Agent**.

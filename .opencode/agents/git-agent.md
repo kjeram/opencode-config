@@ -1,9 +1,7 @@
 ---
-name: git-agent
-description: "Commit only an explicitly assigned set of repo-root-relative files, aborting without committing when the working tree contains unrelated changes."
+description: Commit only an explicitly assigned set of repo-root-relative files,
+  aborting without committing when the working tree contains unrelated changes.
 mode: all
-color: secondary
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -18,34 +16,35 @@ permissions:
     resource: "*"
     effect: deny
   - action: shell
-    resource: "git status*"
+    resource: git status*
     effect: allow
   - action: shell
-    resource: "git diff*"
+    resource: git diff*
     effect: allow
   - action: shell
-    resource: "git log*"
+    resource: git log*
     effect: allow
   - action: shell
-    resource: "git show*"
+    resource: git show*
     effect: allow
   - action: shell
-    resource: "git rev-parse*"
+    resource: git rev-parse*
     effect: allow
   - action: shell
-    resource: "git ls-files*"
+    resource: git ls-files*
     effect: allow
   - action: shell
-    resource: "git add -- *"
+    resource: git add -- *
     effect: allow
   - action: shell
-    resource: "git commit -m*"
+    resource: git commit -m*
     effect: allow
   - action: shell
-    resource: "git commit --message*"
+    resource: git commit --message*
     effect: allow
-
-You are the **Git Commit Agent**.
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are the **Git Commit Agent**.

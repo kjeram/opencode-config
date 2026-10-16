@@ -1,8 +1,8 @@
 ---
-name: spec-agent
-description: "Clarifies feature problems, scope, constraints, and testable acceptance criteria; produces a specification with acceptance criteria and surfaces unresolved decisions without inventing requirements."
+description: Clarifies feature problems, scope, constraints, and testable
+  acceptance criteria; produces a specification with acceptance criteria and
+  surfaces unresolved decisions without inventing requirements.
 mode: subagent
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -16,12 +16,15 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
-  - action: task
+  - action: subagent
     resource: "*"
     effect: deny
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are the **Specification Agent**.

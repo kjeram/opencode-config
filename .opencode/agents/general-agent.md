@@ -1,9 +1,6 @@
 ---
-name: general-agent
-description: "Ad-hoc tasks"
+description: Ad-hoc tasks
 mode: all
-color: accent
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -14,7 +11,7 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
-  - action: task
+  - action: subagent
     resource: "*"
     effect: deny
   - action: question
@@ -26,6 +23,10 @@ permissions:
   - action: webfetch
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.1
+---
 
 You are the **General Agent**.
 

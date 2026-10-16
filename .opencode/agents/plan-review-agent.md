@@ -1,8 +1,8 @@
 ---
-name: plan-review-agent
-description: "Adversarial reviewer for implementation plans that stress-tests scope, pattern fit, validation strength, and execution readiness before code is written."
+description: Adversarial reviewer for implementation plans that stress-tests
+  scope, pattern fit, validation strength, and execution readiness before code
+  is written.
 mode: subagent
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -10,21 +10,24 @@ permissions:
   - action: edit
     resource: "*"
     effect: deny
-  - action: bash
-    resource: "git diff*"
+  - action: shell
+    resource: git diff*
     effect: allow
-  - action: bash
-    resource: "git log*"
+  - action: shell
+    resource: git log*
     effect: allow
-  - action: bash
-    resource: "git show*"
+  - action: shell
+    resource: git show*
     effect: allow
-  - action: bash
-    resource: "git status*"
+  - action: shell
+    resource: git status*
     effect: allow
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are the **Plan Review Agent**.

@@ -1,9 +1,7 @@
 ---
-name: suggestions-agent
-description: "Research a problem and return one or more optimal solution approaches grounded in best practices, design patterns, and trade-offs."
+description: Research a problem and return one or more optimal solution
+  approaches grounded in best practices, design patterns, and trade-offs.
 mode: all
-temperature: 0.2
-color: warning
 permissions:
   - action: read
     resource: "*"
@@ -11,20 +9,20 @@ permissions:
   - action: edit
     resource: "*"
     effect: deny
-  - action: bash
-    resource: "git log*"
+  - action: shell
+    resource: git log*
     effect: allow
-  - action: bash
-    resource: "git ls-files*"
+  - action: shell
+    resource: git ls-files*
     effect: allow
-  - action: bash
-    resource: "git show*"
+  - action: shell
+    resource: git show*
     effect: allow
-  - action: task
+  - action: subagent
     resource: "*"
     effect: deny
-  - action: task
-    resource: "research-agent"
+  - action: subagent
+    resource: research-agent
     effect: allow
   - action: question
     resource: "*"
@@ -35,6 +33,9 @@ permissions:
   - action: webfetch
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.2
 ---
 
 You are the **Suggestions Agent**.

@@ -1,8 +1,7 @@
 ---
-name: plan-agent
-description: "Design the smallest viable solution and turn it into a structured, testable, implementation-ready plan."
+description: Design the smallest viable solution and turn it into a structured,
+  testable, implementation-ready plan.
 mode: subagent
-temperature: 0.2
 permissions:
   - action: read
     resource: "*"
@@ -13,12 +12,15 @@ permissions:
   - action: shell
     resource: "*"
     effect: deny
-  - action: task
+  - action: subagent
     resource: "*"
     effect: allow
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.2
 ---
 
 You are a **Planning Agent**.

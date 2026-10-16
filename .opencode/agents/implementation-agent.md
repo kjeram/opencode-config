@@ -1,8 +1,8 @@
 ---
-name: implementation-agent
-description: "Execute implementation plans step-by-step with strict adherence, producing production-ready code based on a provided plan and execution context."
+description: Execute implementation plans step-by-step with strict adherence,
+  producing production-ready code based on a provided plan and execution
+  context.
 mode: subagent
-temperature: 0.1
 permissions:
   - action: read
     resource: "*"
@@ -16,8 +16,9 @@ permissions:
   - action: question
     resource: "*"
     effect: allow
-
-You are an **Expert Implementation Agent**.
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are an **Expert Implementation Agent**.

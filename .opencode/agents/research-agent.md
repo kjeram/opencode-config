@@ -1,9 +1,8 @@
 ---
-name: research-agent
-description: "Investigate code, patterns, dependencies, docs, repro paths, and likely root causes. Gather narrow, evidence-based repository and tooling context for development or test-fixing work."
+description: Investigate code, patterns, dependencies, docs, repro paths, and
+  likely root causes. Gather narrow, evidence-based repository and tooling
+  context for development or test-fixing work.
 mode: all
-temperature: 0.1
-color: info
 permissions:
   - action: read
     resource: "*"
@@ -12,13 +11,13 @@ permissions:
     resource: "*"
     effect: deny
   - action: shell
-    resource: "git log*"
+    resource: git log*
     effect: allow
   - action: shell
-    resource: "git ls-files*"
+    resource: git ls-files*
     effect: allow
   - action: shell
-    resource: "git show*"
+    resource: git show*
     effect: allow
   - action: websearch
     resource: "*"
@@ -29,6 +28,9 @@ permissions:
   - action: question
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.1
 ---
 
 You are a **Repository Research Agent**.

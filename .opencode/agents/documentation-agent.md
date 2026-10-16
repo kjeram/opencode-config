@@ -1,9 +1,8 @@
 ---
-name: documentation-agent
-description: "Create, improve, and maintain professional README.md files and source-code docstrings (Python docstrings, JSDoc/TSDoc, Go doc comments) for software projects."
+description: Create, improve, and maintain professional README.md files and
+  source-code docstrings (Python docstrings, JSDoc/TSDoc, Go doc comments) for
+  software projects.
 mode: all
-color: success
-temperature: 0.2
 permissions:
   - action: read
     resource: "*"
@@ -12,52 +11,52 @@ permissions:
     resource: "*"
     effect: allow
   - action: shell
-    resource: "cat *"
+    resource: cat *
     effect: allow
   - action: shell
-    resource: "dir *"
+    resource: dir *
     effect: allow
   - action: shell
-    resource: "find *"
+    resource: find *
     effect: allow
   - action: shell
-    resource: "Get-ChildItem *"
+    resource: Get-ChildItem *
     effect: allow
   - action: shell
-    resource: "git log*"
+    resource: git log*
     effect: allow
   - action: shell
-    resource: "git ls-files*"
+    resource: git ls-files*
     effect: allow
   - action: shell
-    resource: "git show*"
+    resource: git show*
     effect: allow
   - action: shell
-    resource: "grep *"
+    resource: grep *
     effect: allow
   - action: shell
-    resource: "head *"
+    resource: head *
     effect: allow
   - action: shell
-    resource: "ls *"
+    resource: ls *
     effect: allow
   - action: shell
-    resource: "rg *"
+    resource: rg *
     effect: allow
   - action: shell
-    resource: "tail *"
+    resource: tail *
     effect: allow
   - action: shell
-    resource: "type *"
+    resource: type *
     effect: allow
   - action: shell
-    resource: "wc *"
+    resource: wc *
     effect: allow
-  - action: task
+  - action: subagent
     resource: "*"
     effect: deny
-  - action: task
-    resource: "research-agent"
+  - action: subagent
+    resource: research-agent
     effect: allow
   - action: question
     resource: "*"
@@ -68,6 +67,9 @@ permissions:
   - action: webfetch
     resource: "*"
     effect: allow
+request:
+  body:
+    temperature: 0.2
 ---
 
 You are the **Documentation Agent**.
