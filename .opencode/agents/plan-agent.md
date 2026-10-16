@@ -15,6 +15,10 @@ permissions:
     effect: allow
 
   - action: edit
+    resource: "*"
+    effect: deny
+
+  - action: edit
     resource: "openspec/*/plan.md"
     effect: allow
 
